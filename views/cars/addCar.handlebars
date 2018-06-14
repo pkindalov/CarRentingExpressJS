@@ -1,0 +1,35 @@
+
+<div class="container-fluid">    
+
+        <div class="jumbotron">
+
+            <form action="/addCar" method="POST">
+
+                <div class="form-group">
+                <label for="model">Car's model:</label><br />  
+                <input class="form-control" type="text" name="model" placeholder="model" /><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Car's image:</label><br />
+                    <input class="form-control" type="string" name="image" placeholder="image" /><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="pricePerDay">Price per day:</label><br />
+                    <input class="form-control" type="text" name="pricePerDay" placeholder="Price Per Day" /><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="note">Note about car:</label><br />
+                    {{!-- <input class="form-control" type="text" name="lastName" placeholder="Last Name" /><br /> --}}
+                    <textarea rows="15" cols="100" name="note">You can some useful information about car here.</textarea>
+                </div>
+
+                <input class="btn btn-default" type="submit" value="Add Car" />
+            </form>
+        </div>
+
+        </div>
+
+    

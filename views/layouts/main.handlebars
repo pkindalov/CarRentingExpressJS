@@ -76,7 +76,10 @@
               <li class="active"><a href="index.html">Home</a></li>
               <li><a href="about.html">About</a></li>
               <li><a href="blog.html">blog</a></li>
-              <li><a href="contact.html">contact</a></li>           
+              <li><a href="contact.html">contact</a></li>       
+              {{#if isAdmin}} 
+                  <li><a href="/addCar">Add Car</a></li>       
+              {{/if}}   
               <li>
                     <form id="logout-form" action="/users/logout" method="POST"></form>
                     <a href="javascript:document.getElementById('logout-form').submit()">Logout</a>
