@@ -55,13 +55,39 @@
     <hgroup> 
       
       <!-- logo -->
-      
+    
       <h1> <a href="/" title="Picxa"><img src="/images/logo.png" alt="Picxa" title="Picxa"/></a> </h1>
-      
+   
       <!-- logo --> 
       
       <!-- nav -->
+
+      {{#if currentUser}}
       
+      <nav>
+        <div class="menu-expanded">
+          <div class="nav-icon">
+            <div id="menu" class="menu"></div>
+            <p>menu</p>
+          </div>
+          <div class="cross"> <span class="linee linea1"></span> <span class="linee linea2"></span> <span class="linee linea3"></span> </div>
+          <div class="main-menu">
+            <ul>
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="blog.html">blog</a></li>
+              <li><a href="contact.html">contact</a></li>           
+              <li>
+                    <form id="logout-form" action="/users/logout" method="POST"></form>
+                    <a href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {{else}}
+
       <nav>
         <div class="menu-expanded">
           <div class="nav-icon">
@@ -81,11 +107,24 @@
           </div>
         </div>
       </nav>
+
+      {{/if}}
       
       <!-- nav --> 
       
     </hgroup>
   </div>
+
+   
+      {{#if currentUser}}
+        <div class="row">
+            <div class="col-lg-12">
+      <p>  Wellcome to our site, {{currentUser.username}} </p>
+
+            </div>
+        </div>
+      {{/if}} 
+
 </header>
 
 <!-- header -->
