@@ -12,7 +12,8 @@ let carSchema = new mongoose.Schema({
   note: {type: String, required: REQUIRED_VALIDATION_MESSAGE},
   isCarRented: {type: Boolean, required: REQUIRED_VALIDATION_MESSAGE},
   dateOfPublication: {type: Date, default: new Date()},
-  addedBy: [{type: ObjectId, ref: 'User'}]
+  addedBy: [{type: ObjectId, ref: 'User'}],
+  rentedBy: {type: ObjectId, ref: 'User'}
 })
 
 let Car = mongoose.model('Car', carSchema)
