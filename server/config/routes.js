@@ -12,6 +12,13 @@ module.exports = (app) => {
   app.post('/users/logout', controllers.users.logout)
 
   app.get('/addCar', auth.isInRole('Admin'), controllers.cars.addCarGet)
+  app.post('/addCar', auth.isInRole('Admin'), controllers.cars.addCarPost)
+  app.get('/search', controllers.cars.searchCarByModel)
+  app.get('/searchMoreResults', controllers.cars.searchMoreResults)
+  app.get('/carDetails', controllers.cars.getCarByIdGET)
+  app.get('/deleteCar', auth.isInRole('Admin'), controllers.cars.deleteCarByIdGET)
+  app.get('/cars/rent/:id', auth.isAuthenticated, controllers.cars.rentCarGET)
+  app.post('/cars/rent/:id', auth.isAuthenticated, controllers.cars.rentCarPOST)
 
   app.all('*', (req, res) => {
     res.status(404)
