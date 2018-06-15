@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const encryption = require('../utilities/encryption')
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 const REQUIRED_VALIDATION_MESSAGE = '{PATH} is required'
 
@@ -9,7 +10,9 @@ let userSchema = new mongoose.Schema({
   lastName: {type: String, required: REQUIRED_VALIDATION_MESSAGE},
   salt: String,
   hashedPass: String,
-  roles: [String]
+  roles: [String],
+  addedCars: [{type: ObjectId, ref: 'Car'}],
+  rentedCars: [{type: ObjectId, ref: 'Car'}]
 })
 
 userSchema.method({
@@ -48,7 +51,9 @@ module.exports.seedAdminUser = () => {
       lastName: 'Admin',
       salt: salt,
       hashedPass: hashedPass,
-      roles: ['Admin']
+      roles: ['Admin'],
+      addedCars: [],
+      rentedCars: []
     })
   })
 }
