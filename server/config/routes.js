@@ -19,6 +19,7 @@ module.exports = (app) => {
   app.get('/deleteCar', auth.isInRole('Admin'), controllers.cars.deleteCarByIdGET)
   app.get('/cars/rent/:id', auth.isAuthenticated, controllers.cars.rentCarGET)
   app.post('/cars/rent/:id', auth.isAuthenticated, controllers.cars.rentCarPOST)
+  app.get('/listAllCars', auth.isInRole('Admin'), controllers.cars.listAllCars)
 
   app.all('*', (req, res) => {
     res.status(404)
