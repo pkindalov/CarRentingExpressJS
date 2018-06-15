@@ -1,5 +1,6 @@
 const Car = require('../data/Car')
 const User = require('../data/User')
+const RentHistory = require('../data/RentHistory')
 
 module.exports = {
   addCarGet: (req, res) => {
@@ -163,6 +164,16 @@ module.exports = {
               // console.log(user)
               user.rentedCars.push(car._id)
               user.save()
+
+              RentHistory
+                .create({
+                  user: user,
+                  carModel: car.model,
+                  rentStartedDate: car.startRentingDate,
+                  daysOfRent: car.rentedDays,
+                  totalSumPaidInDollars: car.rentedDays * car.pricePerDay,
+                  pricePerDayInDollars: car.pricePerDay
+                })
             })
         })
     res.redirect('/')
