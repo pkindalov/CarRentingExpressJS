@@ -1,0 +1,99 @@
+
+
+
+<div class="container-fluid">    
+
+        <div class="jumbotron">
+
+            <form action="/editCar?id={{car._id}}" method="POST">
+
+                <div class="form-group">
+                <label for="model">Car's model:</label><br />  
+                <input class="form-control" type="text" value={{car.model}} name="model" placeholder="model" /><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Car's image:</label><br />
+                    <input class="form-control" type="string" value={{car.image}} name="image" placeholder="image" /><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="pricePerDay">Price per day:</label><br />
+                    <input class="form-control" type="number" value={{car.pricePerDay}} name="pricePerDay" placeholder="Price Per Day" /><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="note">Note about car:</label><br />
+                    {{!-- <input class="form-control" type="text" name="lastName" placeholder="Last Name" /><br /> --}}
+                    <textarea rows="15" cols="100" name="note">{{car.note}}</textarea>
+                </div>
+
+                <input class="btn btn-default" type="submit" value="Make Changes" />
+            </form>
+        </div>
+
+        {{!-- <div class="row">
+            <div class="col-lg-12">
+           
+            </div>
+        </div> --}}
+
+        </div>
+
+             <footer class="footer">
+  <h3>Stay connected with us</h3>
+  <div class="container footer-bot">
+    <div class="row"> 
+      
+      <!-- logo -->
+      
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"> <img src="/images/footer-logo.png" alt="Picxa" title="Picxa"/>
+        <p class="copy-right">&copy; Reserved Picxa inc 2016.</p>
+      </div>
+      
+      <!-- logo --> 
+      
+      <!-- address -->
+      
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 padding-top">
+        <address>
+        <p>200 Broadway Av</p>
+        <p>West Beach SA 5024  Australia</p>
+        </address>
+      </div>
+      
+      <!-- address --> 
+      
+      <!-- email -->
+      
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 padding-top">
+        <p><a href="mailto:contact@Picxa.com">contact@Picxa.com</a></p>
+        <p>01 (2) 34 56 78</p>
+      </div>
+      
+      <!-- email --> 
+      
+      <!-- social -->
+      
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 padding-top">
+        <ul class="social">
+          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-delicious" aria-hidden="true"></i></a></li>
+        </ul>
+        <p class="made-by">Made with by <i class="fa fa-heart" aria-hidden="true"></i> <a href="http://www.designstub.com/" target="_blank">Designstub</a>
+        <p> 
+      </div>
+      
+      <!-- social --> 
+      
+    </div>
+  </div>
+</footer>
+
+        
+
+    

@@ -185,5 +185,38 @@ module.exports = {
           nextPage: page + 1
         })
       })
+  },
+
+  editCarByIdGET: (req, res) => {
+    let carId = req.query.id
+
+    Car
+        .findById(carId)
+        .then(car => {
+          res.render('cars/editCar', {
+            car: car
+          })
+        })
+  },
+
+  editCarByIdPOST: (req, res) => {
+    let carId = req.query.id
+    let reqBody = req.body
+    let editedModel = reqBody.model
+    let editedImage = reqBody.image
+    let editedPricePerDay = reqBody.pricePerDay
+    let editedNote = reqBody.note
+
+    Car
+      .findById(carId)
+      .then(car => {
+        car.model = editedModel
+        car.image = editedImage
+        car.pricePerDay = editedPricePerDay
+        car.note = editedNote
+        car.save()
+      })
+
+    res.redirect('/')
   }
 }
