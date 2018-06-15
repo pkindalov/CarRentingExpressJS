@@ -22,6 +22,8 @@ module.exports = (app) => {
   app.get('/listAllCars', auth.isInRole('Admin'), controllers.cars.listAllCars)
   app.get('/editCar', auth.isInRole('Admin'), controllers.cars.editCarByIdGET)
   app.post('/editCar', auth.isInRole('Admin'), controllers.cars.editCarByIdPOST)
+  app.get('/users/me', auth.isAuthenticated, controllers.users.getUserProfil)
+  app.get('/stopRenting', auth.isInRole('Admin'), controllers.cars.stopRentingCarByIdGET)
 
   app.all('*', (req, res) => {
     res.status(404)
