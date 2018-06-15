@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+           <img src={{car.image}} alt={{car.model}} />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <strong>Model:</strong>
+        </div>
+        <div class="col-lg-2">
+            {{car.model}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <strong>Price Per Day </strong>
+        </div>
+        <div class="col-lg-2">
+            {{car.pricePerDay}}$
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <strong>Description:</strong>
+        </div>
+        <div class="col-lg-8">
+            {{car.note}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+
+                {{#if isAdmin}}
+                <a class="btn btn-danger" href="/deleteCar?id={{car._id}}">Delete</a>
+                <a class="btn btn-warning" href="/editCar?id={{car._id}}">Edit</a>
+                {{/if}}
+
+                {{#if currentUser}}
+                <a class="btn btn-primary" href="/cars/rent/{{car._id}}">Rent this car</a>
+                {{/if}}
+        </div>
+    </div>
+</div>

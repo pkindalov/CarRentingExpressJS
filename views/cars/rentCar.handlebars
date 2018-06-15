@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Rent {{car.model}}</h1>
+            <hr />
+
+            <form method="POST" action="/cars/rent/{{car._id}}">
+                <select name="daysOfRent">
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="8" selected="selected">8</option>
+                    <option value="14">14</option>
+                    <option value="18">18</option>
+                    <option value="22">22</option>
+                    <option value="27">27</option>
+                    <option value="30">30</option>
+                </select><br /><br />
+
+                <input class="btn btn-success" type="submit" value="Rent Now" />
+            </form>
+
+        </div>
+   </div>     
+</div>

@@ -1,0 +1,42 @@
+<div class="container-fluid">
+
+    {{#each cars}}
+    <div class="row">
+        <div class="col-lg-6">
+            <img src={{this.image}} alt={{this.model}} />
+        </div>
+
+        <div class="col-lg-6">
+            <h4>Model of car {{this.model}}</h4>
+           <p> Price per day {{this.pricePerDay}} </p>
+           <p>Short Description: </p>
+            <p>{{this.shortDescription}}</p>
+            <p>
+                <a class="btn btn-default" href="/carDetails?car={{this._id}}">Details</a>
+            </p>
+        </div>
+    </div>
+    <hr />
+    {{/each}}
+
+    {{#if hasPrevPage}}
+        <a class="btn btn-default" href="/searchMoreResults?car={{searchedCar}}&page={{prevPage}}">Prev Results</a>
+    {{/if}}
+
+     {{#if hasNextPage}}
+        <a class="btn btn-default" href="/searchMoreResults?car={{searchedCar}}&page={{nextPage}}">Prev Results</a>
+    {{/if}}
+
+    {{#if hasNextPage}}
+
+    {{/if}}
+
+    {{#if noResults}}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Sorry.. nothing found.</h1>
+        </div>
+    </div>
+    {{/if}}
+
+</div>
