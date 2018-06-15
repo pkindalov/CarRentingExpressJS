@@ -156,6 +156,7 @@ module.exports = {
           car.isCarRented = true
           car.rentedDays = parseInt(carRentedDays)
           car.startRentingDate = new Date()
+          car.rentedBy = user
           car.save()
 
           User
@@ -229,5 +230,33 @@ module.exports = {
       })
 
     res.redirect('/')
+  },
+
+  stopRentingCarByIdGET: (req, res) => {
+    let carId = req.query.car
+    let user = req.user.id
+
+    Car
+      .findById(carId)
+      .then(car => {
+        car.isCarRented = false
+        car.save()
+
+        User
+          .findById(car.rentedBy)
+          .then(user => {
+            let pos = user.rentedCars.indexOf(car._id)
+            user.rentedCars.splice(pos)
+            user.save()
+          })
+
+          // Car
+          //   .findById(carId)
+          //   .then(car => {
+          //     car.
+          //   })
+
+        res.redirect('/listAllCars')
+      })
   }
 }

@@ -1,5 +1,6 @@
 const encryption = require('../utilities/encryption')
 const User = require('mongoose').model('User')
+const RentHistory = require('mongoose').model('RentHistory')
 // const Thread = require('mongoose').model('Thread')
 const errorHandler = require('../utilities/error-handler')
 
@@ -73,5 +74,14 @@ module.exports = {
   getUserProfil: (req, res) => {
     // let userName = req.params.username
     let id = req.user.id
+
+    RentHistory
+      .find({'user': id})
+      .then(histories => {
+        res.render('users/profile', {
+          history: histories,
+          noResults: histories.length === 0
+        })
+      })
   }
 }
