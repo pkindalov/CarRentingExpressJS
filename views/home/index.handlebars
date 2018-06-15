@@ -5,15 +5,21 @@
   <div class="wrapper">
     <div class="">
       <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 masonry">
+
+        {{#each cars}}
         <li class="masonry-item grid">
-          <figure class="effect-sarah"> <img src="/images/gallery/01.jpg" alt="" />
+          <figure class="effect-sarah"> <img src={{this.image}} alt={{this.model}} />
             <figcaption>
-              <h2>Photo <span>Title</span></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <a href="details.html">View more</a> </figcaption>
+              <h2>Photo <span>{{this.model}}</span></h2>
+              <p>{{this.note}}</p>
+              <a href="/carDetails?car={{this._id}}">View more</a> </figcaption>
           </figure>
         </li>
-        <li class="masonry-item grid">
+
+        {{/each}}
+
+        
+        {{!-- <li class="masonry-item grid">
           <figure class="effect-sarah"> <img src="/images/gallery/02.jpg" alt="" />
             <figcaption>
               <h2>Photo <span>Title</span></h2>
@@ -149,8 +155,20 @@
               <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
               <a href="details.html">View more</a> </figcaption>
           </figure>
-        </li>
+        </li> --}}
       </ul>
+    </div>
+    {{#if hasPrevPage }}
+       <a class="btn btn-default" href="/?page={{prevPage}}">Show Less</a>
+      {{/if}}
+      
+      {{#if hasNextPage}}
+        <a class="btn btn-default" href="/?page={{nextPage}}">Show More</a>
+      {{/if}}
+  </div>
+
+
+
     </div>
   </div>
 {{!-- </main> --}}
