@@ -8,6 +8,7 @@ let carSchema = new mongoose.Schema({
   image: {type: String, required: REQUIRED_VALIDATION_MESSAGE},
   pricePerDay: {type: Number, required: REQUIRED_VALIDATION_MESSAGE},
   rentedDays: {type: Number, default: 0},
+  startRentingDate: {type: Date},
   note: {type: String, required: REQUIRED_VALIDATION_MESSAGE},
   isCarRented: {type: Boolean, required: REQUIRED_VALIDATION_MESSAGE},
   dateOfPublication: {type: Date, default: new Date()},
