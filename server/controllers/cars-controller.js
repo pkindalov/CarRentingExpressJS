@@ -154,6 +154,7 @@ module.exports = {
         .then(car => {
           car.isCarRented = true
           car.rentedDays = parseInt(carRentedDays)
+          car.startRentingDate = new Date()
           car.save()
 
           User
@@ -165,5 +166,24 @@ module.exports = {
             })
         })
     res.redirect('/')
+  },
+
+  listAllCars: (req, res) => {
+    let pageSize = 2
+    let page = parseInt(req.query.page) || 1
+
+    Car
+      .find({})
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .then(cars => {
+        res.render('cars/listAllCars', {
+          cars: cars,
+          hasPrevPage: page > 1,
+          hasNextPage: cars.length > 0,
+          prevPage: page - 1,
+          nextPage: page + 1
+        })
+      })
   }
 }
