@@ -47,7 +47,8 @@ module.exports = {
     let page = parseInt(req.query.page) || 1
 
     Car
-      .find({'model': model, 'isCarRented': false})
+      .find({$text: {$search: model}})
+      // .find({'model': model, 'isCarRented': false})
       // .skip((page - 1) * pageSize)
       // .limit(pageSize)
       .then(cars => {

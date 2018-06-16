@@ -3,7 +3,7 @@ const helpers = require('../utilities/helpers')
 
 module.exports = {
   index: (req, res) => {
-    let pageSize = 10
+    let pageSize = 1
     let page = parseInt(req.query.page) || 1
 
     Car
@@ -43,6 +43,7 @@ module.exports = {
 
           if (endingRentDate === today) {
             car.isCarRented = false
+            car.rentedBy = []
             car.save()
             return
           }
