@@ -71,17 +71,70 @@ module.exports = {
     res.redirect('/')
   },
 
-  getUserProfil: (req, res) => {
+  getUserProfile: (req, res) => {
     // let userName = req.params.username
+    let page = parseInt(req.query.page) || 1
+    let pageSize = 10
+
     let id = req.user.id
 
     RentHistory
       .find({'user': id})
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
       .then(histories => {
         res.render('users/profile', {
           history: histories,
-          noResults: histories.length === 0
+          noResults: histories.length === 0,
+          hasPrevPage: page > 1,
+          hasNextPage: histories.length > 0,
+          prevPage: page - 1,
+          nextPage: page + 1
         })
       })
+  },
+
+  userRentHistoryGET: (req, res) => {
+    let user = req.query.user
+    if (user) {
+      let users = []
+      let page = parseInt(req.query.page) || 1
+      let pageSize = 2
+
+      let currentUser = req.user.id
+      User
+        .find({'_id': {$ne: currentUser}})
+        .then(usersResult => {
+          for (let i = 0; i < usersResult.length; i++) {
+            users[i] = usersResult[i]
+          }
+        })
+
+      RentHistory
+        .find({'user': user})
+        .skip((page - 1) * pageSize)
+        .limit(pageSize)
+        .then(results => {
+          res.render('users/rentHistory', {
+            user: user,
+            users: users,
+            rentHistory: results,
+            hasPrevPage: page > 1,
+            hasNextPage: results.length > 0,
+            prevPage: page - 1,
+            nextPage: page + 1
+          })
+        })
+    } else {
+      let currentUser = req.user.id
+      User
+        .find({'_id': {$ne: currentUser}})
+        .then(users => {
+          res.render('users/rentHistory', {
+            users: users
+          })
+        })
+    }
   }
+
 }
