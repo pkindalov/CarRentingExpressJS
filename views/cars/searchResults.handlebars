@@ -20,11 +20,11 @@
     {{/each}}
 
     {{#if hasPrevPage}}
-        <a class="btn btn-default" href="/searchMoreResults?car={{searchedCar}}&page={{prevPage}}">Prev Results</a>
+        <a class="btn btn-default" href="/search?car={{searchedCar}}&page={{prevPage}}">Prev Results</a>
     {{/if}}
 
      {{#if hasNextPage}}
-        <a class="btn btn-default" href="/searchMoreResults?car={{searchedCar}}&page={{nextPage}}">Prev Results</a>
+        <a class="btn btn-default" href="/search?car={{searchedCar}}&page={{nextPage}}">Next Results</a>
     {{/if}}
 
     {{#if hasNextPage}}

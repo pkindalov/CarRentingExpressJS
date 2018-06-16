@@ -43,14 +43,14 @@ module.exports = {
 
   searchCarByModel: (req, res) => {
     let model = req.query.car
-    // let pageSize = 2
+    let pageSize = 2
     let page = parseInt(req.query.page) || 1
 
     Car
-      .find({$text: {$search: model}})
+      .find({$text: {$search: model}, 'isCarRented': false})
       // .find({'model': model, 'isCarRented': false})
-      // .skip((page - 1) * pageSize)
-      // .limit(pageSize)
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
       .then(cars => {
         // console.log(cars)
         for (let car of cars) {

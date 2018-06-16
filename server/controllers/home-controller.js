@@ -3,7 +3,7 @@ const helpers = require('../utilities/helpers')
 
 module.exports = {
   index: (req, res) => {
-    let pageSize = 1
+    let pageSize = 10
     let page = parseInt(req.query.page) || 1
 
     Car
