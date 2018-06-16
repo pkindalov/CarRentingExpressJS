@@ -12,8 +12,19 @@
             <figcaption>
               <h2>Photo <span>{{this.model}}</span></h2>
               <p>{{this.note}}</p>
-              <a href="/carDetails?car={{this._id}}">View more</a> </figcaption>
+               </figcaption>
           </figure>
+          <a class="btn btn-default" href="/carDetails?car={{this._id}}">View more</a>
+          {{#if ../currentUser}}
+                
+                    {{#if ../car.isCarRented}}
+                        <p>Sorry.. this car is rented at the moment. This car will be free after {{car.rentedDays}} days from {{car.startRentingDate}}</p>
+                    {{else}}
+
+                          <a class="btn btn-primary" href="/cars/rent/{{this._id}}">Rent this car</a>
+                {{/if}}    
+
+                {{/if}}
         </li>
 
         {{/each}}

@@ -26,6 +26,16 @@
 </div>
 {{/each}}
 
+
+{{#if hasPrevPage}}
+<a class="btn btn-defau
+lt" href="/users/me?page={{prevPage}}">Prev</a>
+{{/if}}
+
+{{#if hasNextPage}}
+<a class="btn btn-default" href="/users/me?page={{nextPage}}">Next</a>
+{{/if}}
+
   <footer class="footer">
   <h3>Stay connected with us</h3>
   <div class="container footer-bot">
