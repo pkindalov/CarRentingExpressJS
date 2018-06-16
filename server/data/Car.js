@@ -16,6 +16,7 @@ let carSchema = new mongoose.Schema({
   rentedBy: {type: ObjectId, ref: 'User'}
 })
 
+carSchema.index({'$**': 'text'})
 let Car = mongoose.model('Car', carSchema)
 
 module.exports = Car
