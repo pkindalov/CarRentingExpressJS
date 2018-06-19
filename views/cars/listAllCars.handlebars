@@ -1,14 +1,18 @@
+<link rel="stylesheet" href="/css/site.css" type="text/css" />
+
+<div class="container-fluid alignCenter">
+
 {{#each cars}}
 
-<div class="row">
+<div class="row listCars">
     <div class="col-lg-6">
-        <img src={{this.image}} alt={{this.model}} />
+        <img class="imgSize centerElement" src={{this.image}} alt={{this.model}} />
     </div>
     <div class="col-lg-6">
         <h3>Model {{this.model}}</h3>
-        <p>Price Per Day {{this.pricePerDay}}</p>
-        <p>Is This Car Rented? {{this.isCarRented}}</p>
-        <p>Date Of Publication {{this.dateOfPublication}}</p>
+        <p><strong>Per Day</strong> {{this.pricePerDay}}</p>
+        <p><strong>This Car Rented?</strong> {{this.isCarRented}}</p>
+        <p><strong>Of Publication {{this.dateOfPublication}}</strong></p>
         <p>
             <a class="btn btn-default" href="/carDetails?car={{this._id}}">Details</a>
             <a class="btn btn-warning" href="/editCar?id={{this._id}}">Edit</a>
@@ -22,12 +26,13 @@
             <a class="btn btn-danger" href="/stopRenting?car={{this._id}}">Stop renting NOW</a>
         {{/if}}
 
+   
     </div>
 </div>
 
 {{/each}}
 
-{{!-- <div class="row">
+<div class="row">
     <div class="col-lg-12">
         {{#if hasPrevPage}}
             <a class="btn btn-primary" href="/listAllCars?page={{prevPage}}">Show Less</a>
@@ -38,7 +43,9 @@
         {{/if}}
 
     </div>
-</div> --}}
+</div>
+
+</div>
 
 <footer class="footer">
   <h3>Stay connected with us</h3>
