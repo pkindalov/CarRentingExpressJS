@@ -9,7 +9,8 @@ let rentHistory = new mongoose.Schema({
   rentStartedDate: {type: Date},
   daysOfRent: {type: Number, required: REQUIRED_VALIDATION_MESSAGE},
   totalSumPaidInDollars: {type: Number, required: REQUIRED_VALIDATION_MESSAGE},
-  pricePerDayInDollars: {type: Number, required: REQUIRED_VALIDATION_MESSAGE}
+  pricePerDayInDollars: {type: Number, required: REQUIRED_VALIDATION_MESSAGE},
+  carImage: {type: String, required: REQUIRED_VALIDATION_MESSAGE}
 })
 
 let RentHistory = mongoose.model('RentHistory', rentHistory)

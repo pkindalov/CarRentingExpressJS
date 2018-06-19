@@ -1,6 +1,6 @@
 const encryption = require('../utilities/encryption')
-const User = require('mongoose').model('User')
-const RentHistory = require('mongoose').model('RentHistory')
+const User = require('../data/User')
+const RentHistory = require('../data/RentHistory')
 // const Thread = require('mongoose').model('Thread')
 const errorHandler = require('../utilities/error-handler')
 
@@ -83,6 +83,7 @@ module.exports = {
       .skip((page - 1) * pageSize)
       .limit(pageSize)
       .then(histories => {
+        // console.log(histories)
         res.render('users/profile', {
           history: histories,
           noResults: histories.length === 0,

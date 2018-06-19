@@ -174,7 +174,8 @@ module.exports = {
                   rentStartedDate: car.startRentingDate,
                   daysOfRent: car.rentedDays,
                   totalSumPaidInDollars: car.rentedDays * car.pricePerDay,
-                  pricePerDayInDollars: car.pricePerDay
+                  pricePerDayInDollars: car.pricePerDay,
+                  carImage: car.image
                 })
             })
         })
@@ -182,7 +183,7 @@ module.exports = {
   },
 
   listAllCars: (req, res) => {
-    let pageSize = 2
+    let pageSize = 10
     let page = parseInt(req.query.page) || 1
 
     Car
