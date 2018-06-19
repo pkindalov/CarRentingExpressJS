@@ -1,21 +1,31 @@
-h1{
-    color: red;
+.alignCenter{
+    text-align:  center;
 }
 
-.container{
-    padding-left: 25%;
+.centerElement{
+    margin: 0 auto;
 }
 
-.menu{
-    list-style-type: none;
-    padding-left: 0;
-    margin-left: 12%;
+.imgSize{
+    width: 450px;
+    height: 300px;
 }
 
-.menu li {
-    display: inline-block;
+.imgContainer{
+    margin-bottom: 40px;
 }
 
-.menu li::after{
-    content: '\00a0';
+.articles{
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
+
+.adminButtonsContainer{
+    margin-top: 70px;
+}
+
+.listCars{
+    margin-bottom: 150px;
+    text-align: left;
+}
+
