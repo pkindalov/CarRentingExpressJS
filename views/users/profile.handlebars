@@ -1,4 +1,6 @@
-<div class="container-fluid">
+<link rel="stylesheet" href="/css/site.css" type="text/css" />
+
+<div class="container-fluid alignCenter">
     <div class="row">
         <div class="col-lg-12">
             <h1>Rent history of {{currentUser.username}}</h1>
@@ -15,9 +17,12 @@
     {{/if}}
 
     {{#each history}}
-    <div class="row">
+    <div class="row articles">
         <div class="col-lg-12">
             <h3>Model of car {{this.carModel}}</h3>
+            <p>Car Image:
+              <img class="imgSize centerElement" src={{this.carImage}} alt={{this.carModel}} /> 
+            </p>
             <p>Rent Started On {{this.rentStartedDate}}</p>
             <p>Price On Day(In that time) - {{this.pricePerDayInDollars}}</p>
             <p>Days Of Rent {{this.daysOfRent}}</p>
@@ -35,6 +40,8 @@ lt" href="/users/me?page={{prevPage}}">Prev</a>
 {{#if hasNextPage}}
 <a class="btn btn-default" href="/users/me?page={{nextPage}}">Next</a>
 {{/if}}
+
+</div>
 
   <footer class="footer">
   <h3>Stay connected with us</h3>

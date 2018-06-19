@@ -1,6 +1,10 @@
 {{!-- <main class="main-wrapper" id="container">  --}}
   
   <!-- image Gallery -->
+
+<div class="container-fluid">
+
+
   
   <div class="wrapper">
     <div class="">
@@ -14,7 +18,9 @@
               <p>{{this.note}}</p>
                </figcaption>
           </figure>
-          <a class="btn btn-default" href="/carDetails?car={{this._id}}">View more</a>
+
+          <div class="buttonContainer">
+              <a class="btn btn-default" href="/carDetails?car={{this._id}}">View more</a>
           {{#if ../currentUser}}
                 
                     {{#if ../car.isCarRented}}
@@ -25,6 +31,14 @@
                 {{/if}}    
 
                 {{/if}}
+
+                {{#if ../isAdmin}}
+                  <a class="btn btn-warning" href="/editCar?id={{this._id}}">Edit Advert</a>
+                  <a class="btn btn-danger" href="/deleteCar?id={{this._id}}">Delete</a>
+                {{/if}}
+            
+          </div>
+          
         </li>
 
         {{/each}}
@@ -178,6 +192,7 @@
       {{/if}}
   </div>
 
+</div>
 
 
     </div>
