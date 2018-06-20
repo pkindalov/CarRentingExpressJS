@@ -13,7 +13,8 @@ let carSchema = new mongoose.Schema({
   isCarRented: {type: Boolean, required: REQUIRED_VALIDATION_MESSAGE},
   dateOfPublication: {type: Date, default: new Date()},
   addedBy: [{type: ObjectId, ref: 'User'}],
-  rentedBy: {type: ObjectId, ref: 'User'}
+  rentedBy: {type: ObjectId, ref: 'User'},
+  likes: [{type: ObjectId, ref: 'User'}]
 })
 
 carSchema.index({'$**': 'text'})

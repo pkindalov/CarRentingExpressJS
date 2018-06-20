@@ -46,6 +46,16 @@
                 {{/if}}
 
                 {{#if currentUser}}
+
+                
+
+                    {{#if rightToVote}}
+                        <a class="btn btn-primary" href="/like?car={{car._id}}">Like</a>
+                        {{else}}
+                        <p>You have already like this car. You can <a href="/dislike?car={{car._id}}">Dislike</a> it.</p>
+                    {{/if}}
+
+                   
                 
                     {{#if car.isCarRented}}
                         <p>Sorry.. this car is rented at the moment. This car will be free after {{car.rentedDays}} days from {{car.startRentingDate}}</p>
@@ -55,7 +65,14 @@
                 {{/if}}    
 
                 {{/if}}
+                
                 </div>
+
+                   {{#if noLikes}}
+                        <p>No likes yet. Be the first who like this. But first you must <a href="/users/login">login</a> or create account from <a href="/users/register">register</a></p>
+                        {{else}}
+                        <p><a href="/peopleLikes?car={{car._id}}">{{likesCount}}</a> people like this</p>
+                    {{/if}}
         </div>
     </div>
 </div>
