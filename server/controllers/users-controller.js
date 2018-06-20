@@ -1,5 +1,6 @@
 const encryption = require('../utilities/encryption')
 const User = require('../data/User')
+const Car = require('../data/Car')
 const RentHistory = require('../data/RentHistory')
 // const Thread = require('mongoose').model('Thread')
 const errorHandler = require('../utilities/error-handler')
@@ -136,6 +137,36 @@ module.exports = {
           })
         })
     }
+  },
+
+  likeCarAdvert: (req, res) => {
+    let currentUser = req.user.id
+    let carId = req.query.car
+
+    Car
+      .findById(carId)
+      .then(car => {
+        let posOfCar = car.likes.indexOf(currentUser)
+        if (car.likes.indexOf(currentUser) < 0) {
+          car.likes.push(currentUser)
+          car.save()
+        }
+
+        User
+          .findById(currentUser)
+          .then(user => {
+            if (user.likes.indexOf(car._id) < 0) {
+              // user.likes[user.likes.length - 1] = car._id
+              user.likes.push(car._id)
+              user.save()
+            }
+          })
+
+        res.redirect('/')
+
+        // res.redirect(`/carDetails?car=${{carId}}`)
+        // res.redirect(`/carDetails?car=${{carId}}`)
+      })
   }
 
 }

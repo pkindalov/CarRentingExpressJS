@@ -25,6 +25,7 @@ module.exports = (app) => {
   app.get('/users/me', auth.isAuthenticated, controllers.users.getUserProfile)
   app.get('/stopRenting', auth.isInRole('Admin'), controllers.cars.stopRentingCarByIdGET)
   app.get('/rentHistory', auth.isInRole('Admin'), controllers.users.userRentHistoryGET)
+  app.get('/like', auth.isAuthenticated, controllers.users.likeCarAdvert)
 
   app.all('*', (req, res) => {
     res.status(404)

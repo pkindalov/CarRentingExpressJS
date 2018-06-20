@@ -29,7 +29,8 @@ module.exports = {
           note: carNote,
           isCarRented: isThisCarRented,
           dateOfPublication: carDateOfPublication,
-          addedBy: carAddedBy
+          addedBy: carAddedBy,
+          likes: []
         }).then(car => {
           User
             .findById(carAddedBy)
@@ -102,13 +103,35 @@ module.exports = {
 
   getCarByIdGET: (req, res) => {
     let carId = req.query.car
+    let rightToVote = true
+    let currentUser
+
+    try {
+      if (req.user.id) {
+        currentUser = req.user.id
+      }
+    } catch (ex) {
+
+    }
 
     Car
       .findById(carId)
+      // .populate('likes')
       .then(car => {
         // console.log(car)
+        if (currentUser) {
+          // console.log(car.likes)
+          let likeOrNot = car.likes.indexOf(currentUser) > -1
+          if (likeOrNot) {
+            rightToVote = false
+          }
+        }
+
         res.render('cars/carDetails', {
-          car: car
+          car: car,
+          noLikes: car.likes.length === 0,
+          likesCount: car.likes.length,
+          rightToVote: rightToVote
         })
       })
   },
@@ -126,6 +149,11 @@ module.exports = {
                 let carPos = user.addedCars.indexOf(deletedCar._id)
                 user.addedCars.splice(carPos)
                 user.rentedCars.splice(carPos)
+
+                if (user.likes.indexOf(deletedCar._id) > -1) {
+                  let carIdPosLikes = user.likes.indexOf(deletedCar._id)
+                  user.likes.splice(carIdPosLikes)
+                }
                 user.save()
               }
             })
