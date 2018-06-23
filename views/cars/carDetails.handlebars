@@ -3,50 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
 <script>window.jQuery || document.write('<script src="js/assets/jquery.min.js"><\/script>')</script> 
 
-<script>
-    $(document).ready(function(){
-        $('#description').hide()
-        let text = $('#description').text()
-
-        let readMoreLink = $('a[name="readMore"]')
-        let hideText = $('a[name="hide"]')
-
-        readMoreLink.hide()
-        hideText.hide()
-        
-        let shortenedText = ''   
-        if(text.length > 250){
-            shortenedText = text.substr(0, 250) + "...   "
-            readMoreLink.show()
-          
-        }else{
-           shortenedText = text
-        }
-        
-
-    $('#description').text(shortenedText)
-    $('#description').show()
-
-
-    readMoreLink.on('click', function(){
-        $('#description').hide()
-
-        $('#description').text(text)
-        $('#description').fadeIn(2000)
-
-        hideText.show()
-        $(this).hide()
-    })
-
-    hideText.on('click', function(){
-          $('#description').text(shortenedText)
-          readMoreLink.show()
-         $(this).hide()
-    })
-
-       
-    })
-</script>
+<script src="/js/showHideLongText.js"></script>
 
 <div class="container-fluid alignCenter">
     <div class="row">
