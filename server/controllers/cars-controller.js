@@ -288,5 +288,36 @@ module.exports = {
 
         res.redirect('/listAllCars')
       })
+  },
+
+  dislikeCarGET: (req, res) => {
+    let carId = req.query.car
+    let userId = req.user.id
+
+    Car
+      .findById(carId)
+      .then(car => {
+        if (car.likes.indexOf(userId) === -1) {
+          return 'No such user in car likes'
+        }
+
+        let pos = car.likes.indexOf(userId)
+        car.likes.splice(pos)
+        car.save()
+
+        User
+          .findById(userId)
+          .then(user => {
+            if (user.likes.indexOf(car._id) === -1) {
+              return 'No such car in user likes'
+            }
+
+            let carPos = user.likes.indexOf(car._id)
+            user.likes.splice(carPos)
+            user.save()
+
+            res.redirect('/')
+          })
+      })
   }
 }

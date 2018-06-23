@@ -167,6 +167,42 @@ module.exports = {
         // res.redirect(`/carDetails?car=${{carId}}`)
         // res.redirect(`/carDetails?car=${{carId}}`)
       })
+  },
+
+  usersLikedCarPost: (req, res) => {
+    let carId = req.query.car
+    let page = parseInt(req.query.page) || 1
+    let pageSize = 1
+
+    Car
+      .findById(carId)
+      .populate('likes')
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .then(car => {
+        res.render('users/likedCarPosts', {
+          car: car,
+          users: car.likes,
+          hasPrevPage: page > 1,
+          hasNextPage: car.likes.length > 0,
+          prevPage: page - 1,
+          nextPage: page + 1
+        })
+      })
+  },
+
+  showUserLikes: (req, res) => {
+    let userId = req.query.id
+
+    User
+      .findById(userId)
+      .populate('likes')
+      .then(user => {
+        // console.log(user)
+        res.render('users/userLikes', {
+          user: user
+        })
+      })
   }
 
 }
