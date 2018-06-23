@@ -1,42 +1,92 @@
 <link rel="stylesheet" href="/css/site.css" type="text/css" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
+<script>window.jQuery || document.write('<script src="js/assets/jquery.min.js"><\/script>')</script> 
+
+<script>
+    $(document).ready(function(){
+        $('#description').hide()
+        let text = $('#description').text()
+
+        let readMoreLink = $('a[name="readMore"]')
+        let hideText = $('a[name="hide"]')
+
+        readMoreLink.hide()
+        hideText.hide()
+        
+        let shortenedText = ''   
+        if(text.length > 250){
+            shortenedText = text.substr(0, 250) + "...   "
+            readMoreLink.show()
+          
+        }else{
+           shortenedText = text
+        }
+        
+
+    $('#description').text(shortenedText)
+    $('#description').show()
+
+
+    readMoreLink.on('click', function(){
+        $('#description').hide()
+
+        $('#description').text(text)
+        $('#description').fadeIn(2000)
+
+        hideText.show()
+        $(this).hide()
+    })
+
+    hideText.on('click', function(){
+          $('#description').text(shortenedText)
+          readMoreLink.show()
+         $(this).hide()
+    })
+
+       
+    })
+</script>
+
 <div class="container-fluid alignCenter">
     <div class="row">
         <div class="col-lg-12">
            <img class="centerElement imgContainer" src={{car.image}} alt={{car.model}} />
         </div>
     </div>
-    <div class="row">
+    <div class="row alignTextRight">
         <div class="col-lg-2">&nbsp;</div>
-        <div class="col-lg-2">&nbsp;</div>
+        {{!-- <div class="col-lg-2">&nbsp;</div> --}}
         <div class="col-lg-2">
             <strong>Model:</strong>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-5 alignTextLeft">
             {{car.model}}
         </div>
     </div>
-    <div class="row">
+    <div class="row alignTextRight">
         <div class="col-lg-2">&nbsp;</div>
-        <div class="col-lg-2">&nbsp;</div>
+        {{!-- <div class="col-lg-2">&nbsp;</div> --}}
         <div class="col-lg-2">
             <strong>Price Per Day </strong>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-5 alignTextLeft">
             {{car.pricePerDay}}$
         </div>
     </div>
-    <div class="row">
+    <div class="row alignTextRight">
         <div class="col-lg-2">&nbsp;</div>
-        <div class="col-lg-2">&nbsp;</div>
+        {{!-- <div class="col-lg-2">&nbsp;</div> --}}
         <div class="col-lg-2">
             <strong>Description:</strong>
         </div>
-        <div class="col-lg-2">
+        <div id="description" class="col-lg-5 alignTextLeft">
             {{car.note}}
         </div>
     </div>
     <div class="row">
+            <a  name="readMore">ReadMore..</a>
+            <a  name="hide">Hide..</a>
         <div class="col-lg-12">
                
                  <div class="adminButtonsContainer">
@@ -47,15 +97,7 @@
 
                 {{#if currentUser}}
 
-                
-
-                    {{#if rightToVote}}
-                        <a class="btn btn-primary" href="/like?car={{car._id}}">Like</a>
-                        {{else}}
-                        <p>You have already like this car. You can <a href="/dislike?car={{car._id}}">Dislike</a> it.</p>
-                    {{/if}}
-
-                   
+                           
                 
                     {{#if car.isCarRented}}
                         <p>Sorry.. this car is rented at the moment. This car will be free after {{car.rentedDays}} days from {{car.startRentingDate}}</p>
@@ -65,13 +107,24 @@
                 {{/if}}    
 
                 {{/if}}
+
+                {{#if rightToVote}}
+                        <a class="btn btn-primary" href="/like?car={{car._id}}">Like</a>
+                        {{else}}
+                        <p>You have already like this car. You can <a href="/dislike?car={{car._id}}">Dislike</a> it.</p>
+                    {{/if}}
                 
                 </div>
 
                    {{#if noLikes}}
-                        <p>No likes yet. Be the first who like this. But first you must <a href="/users/login">login</a> or create account from <a href="/users/register">register</a></p>
+                        {{#if currentUser}}
+                          Nobody liked this yet
                         {{else}}
-                        <p><a href="/peopleLikes?car={{car._id}}">{{likesCount}}</a> people like this</p>
+                        <p>No likes yet. Be the first who like this. But first you must <a href="/users/login">login</a> or create account from <a href="/users/register">register</a></p>
+                        {{/if}}
+
+                        {{else}}
+                            <p><a href="/peopleLikes?car={{car._id}}">{{likesCount}}</a> people like this</p>
                     {{/if}}
         </div>
     </div>
